@@ -2,8 +2,6 @@
 
 @section('content')
 
-    @include('dashboard.partials.validation-error')
-
     <div class="form-group">
         <label for="title">Titulo</label>
     <input readonly type="text" name="title" class="form-control" value="{{$post->title}}">            

@@ -4,9 +4,9 @@
 
     @include('dashboard.partials.validation-error')
 
-    <form action="{{ route("category.update", $category->id) }}" method="POST">
+    <form action="{{ route("user.update", $user->id) }}" method="POST">
         @method('PUT')
-        @include('dashboard.category._form')
+        @include('dashboard.user._form')
     </form>
 
 @endsection
