@@ -11,9 +11,13 @@
                 CRUD
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('post.index') }}">Posts</a>
+                <a class="dropdown-item" href="{{ route('post.index') }}">Articulos para blog</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('category.index') }}">Categories</a>
+                <a class="dropdown-item" href="{{ route('category.index') }}">Categorias blog</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('member.index') }}">Tiendas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('product.index') }}">Productos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('user.index') }}">Usuarios</a>
                 <div class="dropdown-divider"></div>

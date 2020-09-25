@@ -6,7 +6,9 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+
+import router from './assets/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 /**
  * The following block of code may be used to automatically register your
@@ -27,6 +29,30 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Vue.component('todo-item', {
+//     props: ['titulo', 'posts'],
+//     template: '<li>This is a todo {{titulo}} {{posts.length}}</li>'
+// });
+
+//Vue.component('post-list', require('./components/PostListComponent.vue').default);
+Vue.component('post-modal', require('./components/PostModalComponent.vue').default);
+Vue.component('post-list-default', require('./components/PostListDefaultComponent.vue').default);
+
+
+ClassicEditor
+    .create(document.querySelector('#content'))
+    .then(editor => {
+        console.log(editor);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
 const app = new Vue({
+    router,
     el: '#app',
+    data: {
+        titulo: 'Organic',
+    },
+
 });

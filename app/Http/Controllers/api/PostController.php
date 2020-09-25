@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\api\ApiResponseController;
@@ -25,19 +26,9 @@ class PostController extends ApiResponseController
             ->join('categories', 'posts.category_id', '=', 'categories.id')
             ->join('post_images', 'post_images.post_id', '=', 'posts.id')
             ->select('posts.*', 'categories.title as category', 'post_images.image')
-            ->paginate(10);
+            ->paginate(5);
 
         return $this->successResponse($posts);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -63,19 +54,18 @@ class PostController extends ApiResponseController
         $post->image;
         $post->category;
 
-        return $this->successResponse($posts);
+        return $this->successResponse($post);
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function urlClean(String $urlClean){
+
+        $post = Post::where('url_clean', '=', $urlClean)->firstOrFail();
+
+        $post->image;
+        $post->category;
+
+        return $this->successResponse($post);
     }
 
     /**
@@ -99,5 +89,19 @@ class PostController extends ApiResponseController
     public function destroy($id)
     {
         //
+    }
+
+    public function category(Category $category){
+
+
+        $posts = DB::table('posts')
+            ->join('categories', 'posts.category_id', '=', 'categories.id')
+            ->join('post_images', 'post_images.post_id', '=', 'posts.id')
+            ->select('posts.*', 'categories.title as category', 'post_images.image')
+            ->where('categories.id', $category->id)
+            ->paginate(5);
+
+
+        return $this->successResponse(['posts' => $posts, 'category' => $category]);
     }
 }

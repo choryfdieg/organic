@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\Member;
 use App\Category;
 use Illuminate\Database\Seeder;
 
@@ -30,6 +31,19 @@ class PostTableSeeder extends Seeder
             }
 
             
+        }
+
+        Member::truncate();
+
+        for ($i=0; $i < 8; $i++) { 
+            Member::create([
+                'title' => "Member $i",
+                'description' => "Member $i",
+                'url_clean' => "Member_$i",
+                'phone' => "Member_Phone_$i",
+                'email' => "Member_Email_$i",
+                'posted' => 'yes'
+            ]);
         }
 
         

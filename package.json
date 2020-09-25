@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
-        "cross-env": "^7.0",
+        "cross-env": "^7.0.2",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^22.0.0"
+        "@ckeditor/ckeditor5-build-classic": "^22.0.0",
+        "vue-plain-pagination": "^0.3.0",
+        "vue-router": "^3.4.3"
     }
 }
