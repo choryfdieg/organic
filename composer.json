@@ -37,6 +37,7 @@
         "psr-4": {
             "App\\": "app/"
         },
+        "file": ["app/Helpers/customUrl.php"],
         "classmap": [
             "database/seeds",
             "database/factories"

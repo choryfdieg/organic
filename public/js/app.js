@@ -2010,6 +2010,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     saveContact: function saveContact() {
@@ -38081,131 +38084,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", [
-      _c("div", { staticClass: "form-row" }, [
-        _c("div", { staticClass: "form-group col-md-6" }, [
-          _c("label", { attrs: { for: "inputEmail4" } }, [_vm._v("Email")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.contact.email,
-                expression: "contact.email"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "email", id: "inputEmail4", placeholder: "Email" },
-            domProps: { value: _vm.contact.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.contact, "email", $event.target.value)
-              }
-            }
-          })
-        ])
-      ]),
+  return _c("div", { staticClass: "col-8 offset-2" }, [
+    _c("div", { staticClass: "card" }, [
+      _c("img", {
+        staticClass: "card-img-top logo_200 m-md-auto d-block",
+        attrs: {
+          src: "/images/img_categories/customer-care.svg",
+          alt: "Card image cap"
+        }
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "form-row" }, [
-        _c("div", { staticClass: "form-group col-md-6" }, [
-          _c("label", { attrs: { for: "inputAddress" } }, [_vm._v("Nombre")]),
+      _c("div", { staticClass: "card-body" }, [
+        _c("form", [
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "form-group col-md-6" }, [
+              _c("label", { attrs: { for: "inputEmail4" } }, [_vm._v("Email")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.contact.email,
+                    expression: "contact.email"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "email",
+                  id: "inputEmail4",
+                  placeholder: "Email"
+                },
+                domProps: { value: _vm.contact.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.contact, "email", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.contact.nombre,
-                expression: "contact.nombre"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: "inputAddress",
-              placeholder: "1234 Main St"
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "form-group col-md-6" }, [
+              _c("label", { attrs: { for: "inputAddress" } }, [
+                _vm._v("Nombre")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.contact.nombre,
+                    expression: "contact.nombre"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "inputAddress",
+                  placeholder: "Señor Pepito Perez"
+                },
+                domProps: { value: _vm.contact.nombre },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.contact, "nombre", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "form-group col-md-6" }, [
+              _c("label", { attrs: { for: "inputCity" } }, [
+                _vm._v("Telefono")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.contact.telefono,
+                    expression: "contact.telefono"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", id: "inputCity" },
+                domProps: { value: _vm.contact.telefono },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.contact, "telefono", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "content" } }, [_vm._v("Contenido")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.contact.comentarios,
+                    expression: "contact.comentarios"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "content", id: "content", cols: "50" },
+                domProps: { value: _vm.contact.comentarios },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.contact, "comentarios", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit" },
+              on: { click: _vm.saveContact }
             },
-            domProps: { value: _vm.contact.nombre },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.contact, "nombre", $event.target.value)
-              }
-            }
-          })
+            [_vm._v("Send")]
+          )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-row" }, [
-        _c("div", { staticClass: "form-group col-md-6" }, [
-          _c("label", { attrs: { for: "inputCity" } }, [_vm._v("Telefono")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.contact.telefono,
-                expression: "contact.telefono"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text", id: "inputCity" },
-            domProps: { value: _vm.contact.telefono },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.contact, "telefono", $event.target.value)
-              }
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit" },
-          on: { click: _vm.saveContact }
-        },
-        [_vm._v("Send")]
-      )
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "form-check" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: { type: "checkbox", id: "gridCheck" }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          { staticClass: "form-check-label", attrs: { for: "gridCheck" } },
-          [_vm._v("\n                Check me out\n            ")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -53932,12 +53961,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/router */ "./resources/js/assets/router.js");
 /* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
 /* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/ckeditor/MyUploadAdapter.js */ "./resources/js/assets/ckeditor/MyUploadAdapter.js");
+/* harmony import */ var _assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_2__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -53964,8 +53996,18 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 //Vue.component('post-list', require('./components/PostListComponent.vue').default);
 
 Vue.component('post-modal', __webpack_require__(/*! ./components/PostModalComponent.vue */ "./resources/js/components/PostModalComponent.vue")["default"]);
-Vue.component('post-list-default', __webpack_require__(/*! ./components/PostListDefaultComponent.vue */ "./resources/js/components/PostListDefaultComponent.vue")["default"]);
-_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a.create(document.querySelector('#content')).then(function (editor) {
+Vue.component('post-list-default', __webpack_require__(/*! ./components/PostListDefaultComponent.vue */ "./resources/js/components/PostListDefaultComponent.vue")["default"]); // ...
+
+function MyCustomUploadAdapterPlugin(editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
+    // Configure the URL to the upload script in your back-end here!
+    return new _assets_ckeditor_MyUploadAdapter_js__WEBPACK_IMPORTED_MODULE_2___default.a(loader);
+  };
+}
+
+_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a.create(document.querySelector('#content'), {
+  extraPlugins: [MyCustomUploadAdapterPlugin]
+}).then(function (editor) {
   console.log(editor);
 })["catch"](function (error) {
   console.error(error);
@@ -53977,6 +54019,132 @@ var app = new Vue({
     titulo: 'Organic'
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/assets/ckeditor/MyUploadAdapter.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/assets/ckeditor/MyUploadAdapter.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var MyUploadAdapter = /*#__PURE__*/function () {
+  function MyUploadAdapter(loader) {
+    _classCallCheck(this, MyUploadAdapter);
+
+    // The file loader instance to use during the upload.
+    this.loader = loader;
+  } // Starts the upload process.
+
+
+  _createClass(MyUploadAdapter, [{
+    key: "upload",
+    value: function upload() {
+      var _this = this;
+
+      return this.loader.file.then(function (file) {
+        return new Promise(function (resolve, reject) {
+          _this._initRequest();
+
+          _this._initListeners(resolve, reject, file);
+
+          _this._sendRequest(file);
+        });
+      });
+    } // Aborts the upload process.
+
+  }, {
+    key: "abort",
+    value: function abort() {
+      if (this.xhr) {
+        this.xhr.abort();
+      }
+    } // Initializes the XMLHttpRequest object using the URL passed to the constructor.
+
+  }, {
+    key: "_initRequest",
+    value: function _initRequest() {
+      var xhr = this.xhr = new XMLHttpRequest(); // Note that your request may look different. It is up to you and your editor
+      // integration to choose the right communication channel. This example uses
+      // a POST request with JSON as a data structure but your configuration
+      // could be different.
+
+      xhr.open('POST', 'http://organic.test/dashboard/post/content_image', true);
+      xhr.responseType = 'json';
+    } // Initializes XMLHttpRequest listeners.
+
+  }, {
+    key: "_initListeners",
+    value: function _initListeners(resolve, reject, file) {
+      var xhr = this.xhr;
+      var loader = this.loader;
+      var genericErrorText = "Couldn't upload file: ".concat(file.name, ".");
+      xhr.addEventListener('error', function () {
+        return reject(genericErrorText);
+      });
+      xhr.addEventListener('abort', function () {
+        return reject();
+      });
+      xhr.addEventListener('load', function () {
+        var response = xhr.response; // This example assumes the XHR server's "response" object will come with
+        // an "error" which has its own "message" that can be passed to reject()
+        // in the upload promise.
+        //
+        // Your integration may handle upload errors in a different way so make sure
+        // it is done properly. The reject() function must be called when the upload fails.
+
+        if (!response || response.error) {
+          return reject(response && response.error ? response.error.message : genericErrorText);
+        } // If the upload is successful, resolve the upload promise with an object containing
+        // at least the "default" URL, pointing to the image on the server.
+        // This URL will be used to display the image in the content. Learn more in the
+        // UploadAdapter#upload documentation.
+
+
+        resolve({
+          "default": response["default"]
+        });
+      }); // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
+      // properties which are used e.g. to display the upload progress bar in the editor
+      // user interface.
+
+      if (xhr.upload) {
+        xhr.upload.addEventListener('progress', function (evt) {
+          if (evt.lengthComputable) {
+            loader.uploadTotal = evt.total;
+            loader.uploaded = evt.loaded;
+          }
+        });
+      }
+    } // Prepares the data and sends the request.
+
+  }, {
+    key: "_sendRequest",
+    value: function _sendRequest(file) {
+      // Prepare the form data.
+      var data = new FormData();
+      data.append('image', file);
+      data.append('_token', $('#token').val()); // Important note: This is the right place to implement security mechanisms
+      // like authentication and CSRF protection. For instance, you can use
+      // XMLHttpRequest.setRequestHeader() to set the request headers containing
+      // the CSRF token generated earlier by your application.
+      // Send the request.
+
+      this.xhr.send(data);
+    }
+  }]);
+
+  return MyUploadAdapter;
+}();
+
+module.exports = MyUploadAdapter;
 
 /***/ }),
 
@@ -54165,15 +54333,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************!*\
   !*** ./resources/js/components/ContactComponent.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ContactComponent_vue_vue_type_template_id_2b26a8a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ContactComponent.vue?vue&type=template&id=2b26a8a8& */ "./resources/js/components/ContactComponent.vue?vue&type=template&id=2b26a8a8&");
 /* harmony import */ var _ContactComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContactComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ContactComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ContactComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ContactComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -54203,7 +54370,7 @@ component.options.__file = "resources/js/components/ContactComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ContactComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

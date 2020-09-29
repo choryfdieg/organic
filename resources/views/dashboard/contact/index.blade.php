@@ -3,53 +3,49 @@
 
 @section('content')
 
-<a href="{{ route('post.create') }}" class="btn btn-primary mt-3 mb-3">Crear Post</a>
-
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
-            <th>title</th>
-            <th>posted</th>
-            <th>category</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
             <th>created at</th>
             <th>update at</th>
             <th>actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($posts as $post)
+        @foreach ($contacts as $contact)
         <tr>
             <td>
-                {{$post->id}}
+                {{$contact->id}}
             </td>
             <td>
-                {{$post->title}}
+                {{$contact->name}}
             </td>
             <td>
-                {{$post->posted}}
+                {{$contact->email}}
             </td>
             <td>
-                {{$post->category->title}}
+                {{$contact->phone}}
             </td>
             <td>
-                {{$post->created_at->format('Y-m-d')}}
+                {{$contact->created_at->format('Y-m-d')}}
             </td>
             <td>
-                {{$post->updated_at->format('Y-m-d')}}
+                {{$contact->updated_at->format('Y-m-d')}}
             </td>
             <td>
-            <a href="{{route('post.show', $post->id)}}" class="btn btn-primary">Ver</a>
-            <a href="{{route('post.edit', $post->id)}}" class="btn btn-info">Editar</a>
-            <a href="{{route('post-comment.post', $post->id)}}" class="btn btn-info">Commentarios</a>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-id="{{$post->id}}">Eliminar</button>
+            <a href="{{route('contact.show', $contact->id)}}" class="btn btn-primary">Ver</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-id="{{$contact->id}}">Eliminar</button>
         </tr>
             
         @endforeach
     </tbody>
 </table>
 
-{{$posts->links()}}
+{{$contacts->links()}}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -65,7 +61,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <form action="" data-action="{{route('post.destroy', 0)}}" id="formDelete" method="POST">
+            <form action="" data-action="{{route('contact.destroy', 0)}}" id="formDelete" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -83,7 +79,7 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
-            modal.find('#modalLabel').text('Vas a borrar el POST: ' + id);
+            modal.find('#modalLabel').text('Vas a borrar el CONTACT: ' + id);
             let action = modal.find('#formDelete').attr('data-action').slice(0, -1) + id;
             modal.find('#formDelete').attr('action', action);
             });

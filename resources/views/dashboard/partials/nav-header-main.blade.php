@@ -13,6 +13,8 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('post.index') }}">Articulos para blog</a>
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('post-comment.index') }}">Comentarios</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('category.index') }}">Categorias blog</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('member.index') }}">Tiendas</a>
@@ -20,6 +22,8 @@
                 <a class="dropdown-item" href="{{ route('product.index') }}">Productos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('user.index') }}">Usuarios</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('contact.index') }}">Contactos</a>
                 <div class="dropdown-divider"></div>
             </div>
             </li>        

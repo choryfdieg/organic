@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Category;
+use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryPost;
+use App\Http\Requests\UpdateCategoryPut;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -49,7 +52,26 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryPost $request)
     {
-        Category::create($request->validated());
+
+        if($request->url_clean == ''){
+            $request->url_clean = $request->title;
+        }
+
+        $url_clean = CustomUrl::urlTitle($request->url_clean, '-', true);
+
+        
+        $data = $request->validated();
+        $data['url_clean'] = $url_clean;
+
+        $validator = Validator::make($data, StoreCategoryPost::getRules());
+
+        if ($validator->fails()) {
+            return redirect('dashboard/category/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        Category::create($data);
 
         return back()->with('status', 'Categoria creada con exito');
     }
@@ -83,7 +105,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCategoryPost $request, Category $category)
+    public function update(UpdateCategoryPut $request, Category $category)
     {
         $category->update($request->validated());
 

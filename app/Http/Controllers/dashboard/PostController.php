@@ -5,9 +5,13 @@ namespace App\Http\Controllers\dashboard;
 use App\Post;
 use App\Category;
 use App\PostImage;
+use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use App\Http\Requests\UpdatePostPut;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -56,7 +60,25 @@ class PostController extends Controller
     public function store(StorePostPost $request)
     {
 
-        Post::create($request->validated());
+        if($request->url_clean == ''){
+            $request->url_clean = $request->title;
+        }
+
+        $url_clean = CustomUrl::urlTitle($request->url_clean, '-', true);
+
+        
+        $data = $request->validated();
+        $data['url_clean'] = $url_clean;
+
+        $validator = Validator::make($data, StorePostPost::getRules());
+
+        if ($validator->fails()) {
+            return redirect('dashboard/post/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        Post::create($data);
 
         return back()->with('status', 'Post creado con exito');
 
@@ -94,7 +116,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePostPost $request, Post $post)
+    public function update(UpdatePostPut $request, Post $post)
     {
 
         $post->update($request->validated());
@@ -120,7 +142,7 @@ class PostController extends Controller
     public function image(Request $request, Post $post){
 
         $request->validate([
-            'image' => 'required|mimes:jpeg, bmp, png|max:10240'
+            'image' => 'required|mimes:jpeg,bmp,png|max:10240'
         ]);
 
         $filename = time() . "." . $request->image->extension();
@@ -132,4 +154,21 @@ class PostController extends Controller
         return back()->with('status', 'Imagen cargada con exito');
 
     }
+
+    public function contentImage(Request $request){
+
+        $request->validate([
+            'image' => 'required|mimes:jpeg,bmp,png|max:10240'
+        ]);
+
+        $filename = time() . "." . $request->image->extension();
+
+        $request->image->move(\public_path('images/posts/'), $filename);
+
+        return response()->json(["default" =>  URL::to('/') . '/images/posts/' . $filename]);
+
+
+    }
+
+    
 }

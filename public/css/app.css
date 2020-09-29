@@ -10926,3 +10926,7 @@ a.text-dark:focus {
   }
 }
 
+.logo_200 {
+  max-width: 200px;
+}
+

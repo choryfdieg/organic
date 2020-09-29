@@ -3,53 +3,89 @@
 
 @section('content')
 
-<a href="{{ route('post.create') }}" class="btn btn-primary mt-3 mb-3">Crear Post</a>
+@if (count($postComments) == 0)
+   
+<h1>No hay comentarios para el post seleccionado</h1>
+
+@else
+
+<div class="col col-6 mb-3">
+
+    <form action="{{route('post-comment.post', 1)}}" id="formFilter">
+
+        <div class="form-row">
+
+            <div class="col col-10">
+
+            <select id="selectFilter" class="form-control">
+
+                @foreach ($posts as $item)
+                    <option value="{{$item->id}}">{{Str::limit($item->title, 15)}}</option>
+                @endforeach
+
+            </select>
+
+            </div>    
+
+            <div class="col-2">
+                <input type="submit" value="Enviar" class="btn btn-success">
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
 
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>title</th>
+            <th>user_id</th>
+            <th>post_id</th>
             <th>posted</th>
-            <th>category</th>
             <th>created at</th>
             <th>update at</th>
             <th>actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($posts as $post)
+        @foreach ($postComments as $postComment)
         <tr>
             <td>
-                {{$post->id}}
+                {{$postComment->id}}
             </td>
             <td>
-                {{$post->title}}
+                {{$postComment->title}}
             </td>
             <td>
-                {{$post->posted}}
+                {{$postComment->user_id}}
             </td>
             <td>
-                {{$post->category->title}}
+                {{$postComment->post_id}}
             </td>
             <td>
-                {{$post->created_at->format('Y-m-d')}}
+                {{$postComment->posted}}
             </td>
             <td>
-                {{$post->updated_at->format('Y-m-d')}}
+                {{$postComment->created_at->format('Y-m-d')}}
             </td>
             <td>
-            <a href="{{route('post.show', $post->id)}}" class="btn btn-primary">Ver</a>
-            <a href="{{route('post.edit', $post->id)}}" class="btn btn-info">Editar</a>
-            <a href="{{route('post-comment.post', $post->id)}}" class="btn btn-info">Commentarios</a>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-id="{{$post->id}}">Eliminar</button>
+                {{$postComment->updated_at->format('Y-m-d')}}
+            </td>
+            <td>
+            <a href="{{route('post-comment.show', $postComment->id)}}" class="btn btn-primary">Ver</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-id="{{$postComment->id}}">Eliminar</button>
         </tr>
             
         @endforeach
     </tbody>
 </table>
 
-{{$posts->links()}}
+{{$postComments->links()}}
+
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -65,7 +101,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <form action="" data-action="{{route('post.destroy', 0)}}" id="formDelete" method="POST">
+            <form action="" data-action="{{route('post-comment.destroy', 0)}}" id="formDelete" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -83,10 +119,26 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
-            modal.find('#modalLabel').text('Vas a borrar el POST: ' + id);
+            modal.find('#modalLabel').text('Vas a borrar el POSTC COMMENT: ' + id);
             let action = modal.find('#formDelete').attr('data-action').slice(0, -1) + id;
             modal.find('#formDelete').attr('action', action);
             });
+    }
+</script>
+
+@endif
+
+<script>
+    window.onload = function(){
+        $('#formFilter').submit(function(){
+
+            let action = $(this).attr('action');
+
+            action = action.replace(/[0-9]/g, $('#selectFilter').val()) ;
+
+            $(this).attr('action', action);
+
+        });
     }
 </script>
 

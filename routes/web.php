@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('dashboard/post-comment', 'dashboard\PostCommentController')->only(['index', 'show', 'destroy']);
+Route::resource('dashboard/contact', 'dashboard\ContactController')->only(['index', 'show', 'destroy']);
 Route::resource('dashboard/product', 'dashboard\ProductController');
 Route::resource('dashboard/member', 'dashboard\MemberController');
 Route::resource('dashboard/post', 'dashboard\PostController');
 Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->name('post.image');
+
+Route::get('dashboard/post-comment/{post}/post', 'dashboard\PostCommentController@postComments')->name('post-comment.post');
 
 Route::resource('dashboard/category', 'dashboard\CategoryController');
 Route::resource('dashboard/user', 'dashboard\UserController');
@@ -31,3 +35,4 @@ Route::get('/detail/{id}', 'web\WebController@detail')->name('detail');
 Route::get('/post/{id}/category', 'web\WebController@postCategory')->name('post.category');
 Route::get('/contact', 'web\WebController@contact')->name('contact');
 Route::get('/categories', 'web\WebController@categories')->name('categories');
+

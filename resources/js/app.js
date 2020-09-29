@@ -9,6 +9,7 @@ require('./bootstrap');
 
 import router from './assets/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import MyUploadAdapter from './assets/ckeditor/MyUploadAdapter.js';
 
 /**
  * The following block of code may be used to automatically register your
@@ -39,8 +40,18 @@ Vue.component('post-modal', require('./components/PostModalComponent.vue').defau
 Vue.component('post-list-default', require('./components/PostListDefaultComponent.vue').default);
 
 
+// ...
+
+function MyCustomUploadAdapterPlugin(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+        // Configure the URL to the upload script in your back-end here!
+        return new MyUploadAdapter(loader);
+    };
+}
+
+
 ClassicEditor
-    .create(document.querySelector('#content'))
+    .create(document.querySelector('#content'), { extraPlugins: [MyCustomUploadAdapterPlugin], })
     .then(editor => {
         console.log(editor);
     })
