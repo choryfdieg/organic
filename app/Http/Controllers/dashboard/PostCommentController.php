@@ -73,5 +73,26 @@ class PostCommentController extends Controller
         return view('/dashboard/post_comment/post', ['postComments' => $postComments]);
 
     }
+
+    public function getComment(Request $request, PostComment $postComment){
+
+        return $postComment;
+
+    }
+
+    public function putStatusComment(PostComment $postComment){
+
+        $posted = ($postComment->posted == 'yes') ? 'not' : 'yes';
+
+        // PostComment::where('id', $postComment->id)
+        //   ->update(['posted' => $posted]);
+
+        $postComment->posted = $posted;
+
+        $postComment->save();
+
+        return response()->json($postComment);
+
+    }
     
 }

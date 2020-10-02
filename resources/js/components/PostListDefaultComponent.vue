@@ -4,7 +4,7 @@
         <div class="card-columns">
 
             <div class="card p-3 m-3" v-for="post in posts">
-                <img class="card-img-top" v-bind:src=" '/images/' + post.image " alt="Card image cap">
+                <img class="card-img-top" v-bind:src="post.image " alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>

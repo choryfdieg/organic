@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Tag;
 use App\Post;
+use App\User;
 use App\Category;
 use App\PostImage;
 use App\Helpers\CustomUrl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
 use App\Http\Requests\UpdatePostPut;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -35,7 +39,13 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('created_at', 'desc')->paginate(4);        
+        // DB::listen(function ($query) {
+        //     echo "<code>$query->sql</code>";
+        //     // $query->bindings
+        //     // $query->time
+        // });
+
+        $posts = Post::with('category')->orderBy('created_at', 'desc')->paginate(4);        
 
         return view('/dashboard/post/index', ['posts' => $posts]);
     }
@@ -47,8 +57,11 @@ class PostController extends Controller
      */
     public function create()
     {
+
+        $tags = Tag::pluck('title', 'id');
+
         $categories = Category::pluck('title', 'id');
-        return view('/dashboard/post/create', ['post' => new Post, 'categories' => $categories]);
+        return view('/dashboard/post/create', ['post' => new Post, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -78,7 +91,10 @@ class PostController extends Controller
                         ->withInput();
         }
 
-        Post::create($data);
+        $post = Post::create($data);
+
+        $post->tags()->sync($request->tags);
+
 
         return back()->with('status', 'Post creado con exito');
 
@@ -105,8 +121,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
 
+        $tags = Tag::pluck('title', 'id');
+
         $categories = Category::pluck('title', 'id');
-        return view('/dashboard/post/edit', ['post' => $post, 'categories' => $categories]);
+
+        return view('/dashboard/post/edit', compact('post', 'categories', 'tags'));
+        //return view('/dashboard/post/edit', ['post' => $post, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -119,7 +139,10 @@ class PostController extends Controller
     public function update(UpdatePostPut $request, Post $post)
     {
 
-        $post->update($request->validated());
+        $post->tags()->sync($request->tags);
+
+        $post->update();
+        
 
         return back()->with('status', 'Post actualizado con exito');
     }
@@ -147,9 +170,11 @@ class PostController extends Controller
 
         $filename = time() . "." . $request->image->extension();
 
-        $request->image->move(\public_path('images'), $filename);
+        //$request->image->move(\public_path('images'), $filename);
 
-        PostImage::create(['post_id' => $post->id, 'image' => $filename]);
+        $path = $request->image->store('public/images');
+
+        PostImage::create(['post_id' => $post->id, 'image' => $path]);
 
         return back()->with('status', 'Imagen cargada con exito');
 
@@ -171,4 +196,19 @@ class PostController extends Controller
     }
 
     
+    public function downLoadimage(Request $request, PostImage $image){
+
+        return (Storage::disk('local')->download($image->image));
+
+    }
+
+    public function deleteImage(PostImage $image){
+
+        Storage::disk('local')->delete($image->image);
+
+        $image->delete();
+
+        return back()->with('status', 'Imagen eliminada con exito');
+
+    }
 }

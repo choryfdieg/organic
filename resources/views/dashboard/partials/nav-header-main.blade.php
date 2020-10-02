@@ -17,7 +17,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('category.index') }}">Categorias blog</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('member.index') }}">Tiendas</a>
+                <a class="dropdown-item" href="{{ route('vendor.index') }}">Tiendas</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('product.index') }}">Productos</a>
                 <div class="dropdown-divider"></div>

@@ -38354,10 +38354,7 @@ var render = function() {
                 _c("div", { staticClass: "card-header" }, [
                   _c("img", {
                     staticClass: "card-img-top",
-                    attrs: {
-                      src: "/images/" + _vm.post.image.image,
-                      alt: "Card image cap"
-                    }
+                    attrs: { src: _vm.post.image.image, alt: "Card image cap" }
                   })
                 ]),
                 _vm._v(" "),
@@ -38466,7 +38463,7 @@ var render = function() {
           return _c("div", { staticClass: "card p-3 m-3" }, [
             _c("img", {
               staticClass: "card-img-top",
-              attrs: { src: "/images/" + post.image, alt: "Card image cap" }
+              attrs: { src: post.image, alt: "Card image cap" }
             }),
             _vm._v(" "),
             _c(
@@ -54005,9 +54002,19 @@ function MyCustomUploadAdapterPlugin(editor) {
   };
 }
 
-_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a.create(document.querySelector('#content'), {
+_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a.create(document.querySelector('#post_content'), {
   extraPlugins: [MyCustomUploadAdapterPlugin]
 }).then(function (editor) {
+  console.log(editor);
+})["catch"](function (error) {
+  console.error(error);
+});
+_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a.create(document.querySelector('#vendor_long_description')).then(function (editor) {
+  console.log(editor);
+})["catch"](function (error) {
+  console.error(error);
+});
+_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_1___default.a.create(document.querySelector('#vendor_service_description')).then(function (editor) {
   console.log(editor);
 })["catch"](function (error) {
   console.error(error);

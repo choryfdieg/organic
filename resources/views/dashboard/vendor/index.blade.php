@@ -3,7 +3,7 @@
 
 @section('content')
 
-<a href="{{ route('member.create') }}" class="btn btn-primary mt-3 mb-3">Crear member</a>
+<a href="{{ route('vendor.create') }}" class="btn btn-primary mt-3 mb-3">Crear vendor</a>
 
 <table class="table">
     <thead>
@@ -18,37 +18,37 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($members as $member)
+        @foreach ($vendors as $vendor)
         <tr>
             <td>
-                {{$member->id}}
+                {{$vendor->id}}
             </td>
             <td>
-                {{$member->title}}
+                {{$vendor->title}}
             </td>
             <td>
-                {{$member->phone}}
+                {{$vendor->phone}}
             </td>
             <td>
-                {{$member->email}}
+                {{$vendor->email}}
             </td>
             <td>
-                {{$member->created_at->format('Y-m-d')}}
+                {{$vendor->created_at->format('Y-m-d')}}
             </td>
             <td>
-                {{$member->updated_at->format('Y-m-d')}}
+                {{$vendor->updated_at->format('Y-m-d')}}
             </td>
             <td>
-            <a href="{{route('member.show', $member->id)}}" class="btn btn-primary">Ver</a>
-            <a href="{{route('member.edit', $member->id)}}" class="btn btn-info">Editar</a>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-id="{{$member->id}}">Eliminar</button>
+            <a href="{{route('vendor.show', $vendor->id)}}" class="btn btn-primary">Ver</a>
+            <a href="{{route('vendor.edit', $vendor->id)}}" class="btn btn-info">Editar</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-id="{{$vendor->id}}">Eliminar</button>
         </tr>
             
         @endforeach
     </tbody>
 </table>
 
-{{$members->links()}}
+{{$vendors->links()}}
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -64,7 +64,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <form action="" data-action="{{route('member.destroy', 0)}}" id="formDelete" method="POST">
+            <form action="" data-action="{{route('vendor.destroy', 0)}}" id="formDelete" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -82,7 +82,7 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
-            modal.find('#modalLabel').text('Vas a borrar el member: ' + id);
+            modal.find('#modalLabel').text('Vas a borrar el vendor: ' + id);
             let action = modal.find('#formDelete').attr('data-action').slice(0, -1) + id;
             modal.find('#formDelete').attr('action', action);
             });

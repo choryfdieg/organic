@@ -5,10 +5,10 @@ namespace App\Http\Controllers\dashboard;
 use App\Rol;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,7 +30,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(4);        
+
+        // DB::listen(function ($query) {
+        //     echo "<code>$query->sql</code>";
+        //     // $query->bindings
+        //     // $query->time
+        // });
+
+        $users = User::with('rol')->orderBy('created_at', 'desc')->paginate(4);        
 
         return view('/dashboard/user/index', ['users' => $users]);
     }
@@ -57,7 +64,8 @@ class UserController extends Controller
 
         $user = $request->validated();
 
-        $user['password'] = Hash::make($user['password']);
+        // ahora en un mutador
+        //$user['password'] = Hash::make($user['password']);
 
         User::create($user);
 
@@ -102,7 +110,8 @@ class UserController extends Controller
     {
         $userValidated = $request->validated();
 
-        $userValidated['password'] = Hash::make($userValidated['password']);
+        // ahora en un mutador
+        //$userValidated['password'] = Hash::make($userValidated['password']);
 
         return back()->with('status', 'Usuario actualizado con exito');
     }

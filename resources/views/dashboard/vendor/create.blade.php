@@ -4,8 +4,8 @@
 
     @include('dashboard.partials.validation-error')
 
-    <form action="{{ route("member.store") }}" method="POST">
-        @include('dashboard.member._form')
+    <form action="{{ route("vendor.store") }}" method="POST">
+        @include('dashboard.vendor._form')
     </form>
 
 @endsection

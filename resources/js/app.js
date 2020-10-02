@@ -50,8 +50,27 @@ function MyCustomUploadAdapterPlugin(editor) {
 }
 
 
+
 ClassicEditor
-    .create(document.querySelector('#content'), { extraPlugins: [MyCustomUploadAdapterPlugin], })
+    .create(document.querySelector('#post_content'), { extraPlugins: [MyCustomUploadAdapterPlugin], })
+    .then(editor => {
+        console.log(editor);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+ClassicEditor
+    .create(document.querySelector('#vendor_long_description'))
+    .then(editor => {
+        console.log(editor);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+ClassicEditor
+    .create(document.querySelector('#vendor_service_description'))
     .then(editor => {
         console.log(editor);
     })

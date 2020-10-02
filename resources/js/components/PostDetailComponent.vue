@@ -4,7 +4,7 @@
             <div class="card-group">
                 <div class="card p-3 m-3" style="width: 18rem;">
                     <div class="card-header">
-                        <img class="card-img-top" v-bind:src=" '/images/' + post.image.image" alt="Card image cap">
+                        <img class="card-img-top" v-bind:src="post.image.image" alt="Card image cap">
                     </div>
                     <div class="card-body">
                     <h1 class="card-title">{{post.title}}</h1>

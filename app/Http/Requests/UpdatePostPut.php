@@ -33,7 +33,8 @@ class updatePostPut extends FormRequest
             'url_clean' => ['required', 'min:5', 'max:500', Rule::unique('posts')->ignore($id)],
             'content' => 'required|min:5',
             'category_id' => 'required',
-            'posted' => 'required'
+            'posted' => 'required',
+            'tags' => 'required',
         ];
     }
 }

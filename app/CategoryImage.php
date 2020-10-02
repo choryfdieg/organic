@@ -5,11 +5,16 @@ namespace App;
 use App\Category;
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class CategoryImage extends Model
 {
-    protected $fillable = ['title' ,'description', 'url_clean', 'phone', 'email', 'posted'];
-    
+    protected $fillable = ['category_id', 'image'];
+
+
     public function category(){
         return $this->belongsTo(Category::class)->withDefault();
+    }
+
+    public function getImageUrl(){
+        return Storage::url($this->image);
     }
 }

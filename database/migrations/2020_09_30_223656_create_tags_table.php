@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembersTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateMembersTable extends Migration
      */
     public function up()
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('title', 500)->nullable();
-            $table->text('description')->nullable();
-            $table->string('url_clean', 500)->nullable();            
-            $table->string('phone', 30)->nullable();
-            $table->string('email', 100)->nullable();
-            $table->enum('posted', ['yes', 'not'])->default('not');
+            $table->string('url_clean', 500)->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('tags');
     }
 }

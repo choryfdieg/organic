@@ -27,8 +27,17 @@
 </div>
 
 <div class="form-group">
+    <label for="posted">Tags</label>
+    <select multiple type="text" name="tags[]" class="form-control">
+        @foreach ($tags as $id => $title)
+            <option {{in_array($id, old('tags') ?: $post->tags->pluck('id')->toArray()) ? 'selected' : ''}} value="{{$id}}">{{$title}}</option>
+        @endforeach
+    </select>
+</div>
+
+<div class="form-group">
     <label for="content">Contenido</label>
-    <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{old('content', $post->content)}}</textarea>
+    <textarea name="content" id="post_content" cols="30" rows="10" class="form-control">{{old('content', $post->content)}}</textarea>
 </div>
 
 <input type="hidden" value="{{csrf_token()}}" id="token">
